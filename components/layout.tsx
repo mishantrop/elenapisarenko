@@ -1,13 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import utilStyles from '../styles/utils.module.css'
-
-import styles from './layout.module.css'
+import Sidebar from './sidebar'
 
 const name = 'Your Name'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'Художник Елена'
 
 interface Props {
   children: any;
@@ -16,12 +12,12 @@ interface Props {
 
 export default function Layout({ children, home }: Props) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="TODO Купить картину блабла"
         />
         <meta
           property="og:image"
@@ -32,49 +28,16 @@ export default function Layout({ children, home }: Props) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-2 gap-4">
+          <section className="bg-white text-center p-4 rounded-md shadow-lg max-w-xs mx-auto">
+            <Sidebar />
+          </section>
+          <main>
+            {children}
+          </main>
         </div>
-      )}
+      </div>
     </div>
   )
 }
