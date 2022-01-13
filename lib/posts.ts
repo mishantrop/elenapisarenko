@@ -28,8 +28,10 @@ export function getSortedPostsData() {
     })
     // Sort posts by date
     return allPostsData.sort(({
+        // @ts-ignore
         date: a
     }, {
+        // @ts-ignore
         date: b
     }) => {
         if (a < b) {

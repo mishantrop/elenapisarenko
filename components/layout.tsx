@@ -9,7 +9,12 @@ import styles from './layout.module.css'
 const name = 'Your Name'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home }) {
+interface Props {
+  children: any;
+  home?: Boolean;
+}
+
+export default function Layout({ children, home }: Props) {
   return (
     <div className={styles.container}>
       <Head>

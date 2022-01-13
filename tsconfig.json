@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "module": "commonjs",
+    "noEmit": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
+    "noUnusedLocals": false,
+    "paths": {
+      "@app/*": [
+        "src/*"
+      ],
+      "@common/*": [
+        "common/*"
+      ],
+      "@stub/*": [
+        "stub/*"
+      ],
+      "@root/*": [
+        "./*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
+    "skipDefaultLibCheck": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

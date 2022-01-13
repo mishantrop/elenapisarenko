@@ -5,6 +5,7 @@ import { getSortedPostsData } from '../lib/posts'
 import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
+import { GetStaticProps } from 'next'
 
 export default function Home({ allPostsData }) {
   return (
@@ -46,7 +47,7 @@ export default function Home({ allPostsData }) {
  * If you export an async function called getStaticProps from a page,
  * Next.js will pre-render this page at build time using the props returned by getStaticProps
  */
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const allPostsData = getSortedPostsData()
   return {
     props: {
