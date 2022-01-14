@@ -1,15 +1,36 @@
-.container {
-    max-width: 999px;
-    padding: 0 1rem;
-    margin: 0 auto 0;
+.aloha {
+    background: #f06;
+    background: linear-gradient(45deg, #fff722, #ff26f9);
+    height: 120px;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.aloha:before,
+.aloha:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
-.backToHome {
-    margin: 3rem 0 0;
+.aloha:before {
+    background: red;
+    box-shadow: 0 0 140px 64px red;
+    z-index: 2;
+    top: -96%;
+    left: -72%;
+    opacity: 0.8;
+}
+
+.aloha:after {
+    background: white;
+    z-index: 3;
+    bottom: -96%;
+    right: -72%;
+    box-shadow: 0 0 140px 64px white;
+    opacity: 1;
+    border-radius: 100%;
 }

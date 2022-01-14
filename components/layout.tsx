@@ -1,16 +1,16 @@
 import Head from 'next/head'
 
 import Sidebar from './sidebar'
+import style from './layout.module.css'
 
 const name = 'Your Name'
 export const siteTitle = 'Художник Елена'
 
 interface Props {
   children: any;
-  home?: Boolean;
 }
 
-export default function Layout({ children, home }: Props) {
+export default function Layout({ children }: Props) {
   return (
     <div>
       <Head>
@@ -28,16 +28,23 @@ export default function Layout({ children, home }: Props) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 gap-4">
-          <section className="bg-white text-center p-4 rounded-md shadow-lg max-w-xs mx-auto">
-            <Sidebar />
-          </section>
-          <main>
-            {children}
-          </main>
+
+      <section className={style.aloha}>
+        &nbsp;
+      </section>
+
+      <section className="-mt-16">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap">
+            <section className="md:w-1/2 lg:w-1/2 xl:w-1/2 sticky top-0 bg-white text-center p-4 rounded-md shadow-lg max-w-xs mx-auto">
+              <Sidebar />
+            </section>
+            <main className="md:w-1/2 lg:w-1/2 xl:w-1/2 mt-16 pl-4">
+              {children}
+            </main>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
