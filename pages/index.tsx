@@ -1,15 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 // import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import classnames from 'classnames'
 
 // import { getSortedPostsData } from '../lib/posts'
 // import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
-import { getWorks } from '../lib/works'
-import utilStyles from '../styles/utils.module.css'
+import { getWorks, getCategories, Category } from '../lib/works'
 
-export default function Home({ allPostsData }) {
-  const works = getWorks()
+// export default function Home({ allPostsData }) {
+export default function Home() {
+  const ALL_WORKS_CATEGORY_ID = -1
+  const allCategories: Array<Category> = [ ...[{ id: ALL_WORKS_CATEGORY_ID, title: 'Все работы' }], ...getCategories() ]
+
+  const [ filteredWorks, setFilteredWorks ] = useState(getWorks())
+  const [ selectedCategoryId, setSelectedCategoryId ] = useState(ALL_WORKS_CATEGORY_ID)
+
+  useEffect(() => {
+    setFilteredWorks(getWorks().filter((work) => {
+      return selectedCategoryId === ALL_WORKS_CATEGORY_ID || work.categoryId === selectedCategoryId
+    }))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategoryId])
 
   return (
     <Layout>
@@ -17,35 +30,50 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       
-      <button className="mr-1 p-2 pl-5 pr-5 bg-transparent border-2 border-blue-500 text-blue-500 text-md rounded-md hover:bg-blue-500 hover:text-gray-100 focus:border-2 focus:border-blue-300">Primary</button>
-      <button className="mr-1 p-2 pl-5 pr-5 bg-transparent border-2 border-gray-500 text-gray-500 text-md rounded-md hover:bg-gray-500 hover:text-gray-100 focus:border-2 focus:border-gray-300">Secondary</button>
+      <div className="pt-4 pb-4">
+        {allCategories.map((category) => (
+          <button
+            key={category.id}
+            className={classnames({
+              'mr-1': true,
+              'mb-1': true,
+              'p-1': true,
+              'pl-2': true,
+              'pr-2': true,
+              'bg-blue-500': category.id === selectedCategoryId,
+              'bg-transparent': category.id !== selectedCategoryId,
+              'border-2': true,
+              'border-blue-500': true,
+              'text-gray-100': category.id === selectedCategoryId,
+              'text-blue-500': category.id !== selectedCategoryId,
+              'text-md': true,
+              'rounded-md': true,
+              'hover:bg-blue-500': true,
+              'hover:text-gray-100': true,
+              'focus:border-2': true,
+              'focus:border-blue-300': true,
+            })}
+            onClick={() => {
+              setSelectedCategoryId(category.id)
+            }}
+          >
+            {category.title}
+          </button>
+        ))}
+      </div>
 
-      <section className="p-24 flex flex-wrap items-center justify-center">
-          {works.map((work) => (
-            <div  key={work.id} className="flex-shrink-0 m-6 relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg">
-              <div className="relative pt-10 px-10 flex items-center justify-center">
-                <div className="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
-                <img className="relative w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt="" />
-              </div>
-              <div className="relative text-white px-6 pb-6 mt-6">
-                <span className="block opacity-75 -mb-1">Outdoor</span>
-                <div className="flex justify-between">
-                  <span className="block font-semibold text-xl">    <div className="flex-shrink-0 m-6 relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg">
-      <div className="relative pt-10 px-10 flex items-center justify-center">
-        <div className="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
-        <img className="relative w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt="" />
-      </div>
-      <div className="relative text-white px-6 pb-6 mt-6">
-        <span className="block opacity-75 -mb-1">Масло</span>
-        <div className="flex justify-between">
-          <span className="block font-semibold text-xl">Oak Tree</span>
-          <span className="block bg-white rounded-full text-purple-500 text-xs font-bold px-3 py-2 leading-none flex items-center">$68.50</span>
-        </div>
-      </div>
-    </div></span>
-                  <span className="block bg-white rounded-full text-purple-500 text-xs font-bold px-3 py-2 leading-none flex items-center">$68.50</span>
-                </div>
-              </div>
+      <section className="grid grid-flow-row-dense grid-cols-2 gap-3 justify-between sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
+          {filteredWorks.map((work) => (
+            <div key={work.id}>
+              <img
+                className="border border-yellow-700 mb-1 border-solid w-full hover:border-yellow-500"
+                alt="Best seller" 
+                src={`images/works/${work.src}`}
+                loading="lazy"
+              />
+              <h2 className="pt-2 m-0 leading-4 font-semibold">Indoor light 2021 USA</h2>
+              <p>$210</p>
+              <p className="text-green-500 italic font-medium">In Stock</p>
             </div>
           ))}
       </section>

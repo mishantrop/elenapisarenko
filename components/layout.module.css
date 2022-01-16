@@ -20,7 +20,7 @@
     background: red;
     box-shadow: 0 0 140px 64px red;
     z-index: 2;
-    top: -96%;
+    top: -100%;
     left: -72%;
     opacity: 0.8;
 }

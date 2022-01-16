@@ -33,18 +33,29 @@ export default function Layout({ children }: Props) {
         &nbsp;
       </section>
 
-      <section className="-mt-16">
+      <section className="-mt-16 mb-16">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap">
-            <section className="md:w-1/2 lg:w-1/2 xl:w-1/2 sticky top-0 bg-white text-center p-4 rounded-md shadow-lg max-w-xs mx-auto">
+          <div className="flex" style={{ alignItems: 'flex-start' }}>
+            <section
+              className="md:w-1/2 lg:w-1/2 xl:w-1/4 bg-white p-4 rounded-md shadow-lg max-w-xs mx-auto"
+              style={{ zIndex: 1 }}
+            >
               <Sidebar />
             </section>
-            <main className="md:w-1/2 lg:w-1/2 xl:w-1/2 mt-16 pl-4">
+            <main className="md:w-1/2 lg:w-1/2 xl:w-3/4 mt-16 bg-white pl-4">
               {children}
             </main>
           </div>
         </div>
       </section>
+
+      <footer>
+        <div className="py-6 bg-slate-800">
+          <div className="text-center text-lg text-white bg-slate-800">
+            <span>&copy; 2022</span>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
