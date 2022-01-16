@@ -3,7 +3,7 @@ export type Category = {
     title: string;
 }
 
-type Work = {
+export type Work = {
     id: number;
     title: string;
     categoryId: number;
@@ -47,31 +47,31 @@ export const getWorks = (): Array<Work> => {
         },
         {
             id: 2,
-            title: '',
+            title: 'Название работы состоит из почти сотни символов для проверки адаптивности вёрстки',
             categoryId: 3,
             src: '002.jpg',
         },
         {
             id: 3,
-            title: '',
+            title: 'Названиеработыизодногословадляпроверкивёрстки',
             categoryId: 4,
             src: '003.jpg',
         },
         {
             id: 4,
-            title: '',
+            title: 'Привет',
             categoryId: 1,
             src: '004.jpg',
         },
         {
             id: 5,
-            title: '',
+            title: 'Как дела?',
             categoryId: 3,
             src: '005.jpg',
         },
         {
             id: 6,
-            title: '',
+            title: 'Эмоджи 🐺',
             categoryId: 2,
             src: '006.jpg',
         },

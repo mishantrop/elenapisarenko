@@ -1,0 +1,9 @@
+.sidebar svg path {
+    fill: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+    .sidebar svg path {
+        fill: #ddd;
+    }
+}

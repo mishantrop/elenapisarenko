@@ -1,0 +1,35 @@
+.work-item {
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+}
+
+.work-item__image {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+    transition: opacity,transform .2s linear;
+    width: 100%;
+}
+
+.work-item__image::after {
+    background-image: inherit;
+    background-position: 50%;
+    background-size: cover;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: center;
+    transition: transform .4s ease-in-out;
+}
+
+.work-item:hover .work-item__image::after {
+    transform: scale(1.1);
+}
