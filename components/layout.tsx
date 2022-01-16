@@ -14,14 +14,13 @@ export default function Layout({ children }: Props) {
 
       <section className="-mt-16 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <div className="flex" style={{ alignItems: 'flex-start' }}>
+          <div className="md:flex md:place-items-start">
             <section
-              className="md:w-1/2 lg:w-1/2 xl:w-1/4 bg-white mb-16 p-4 rounded-md shadow-lg max-w-xs mx-auto dark:bg-gray-800"
-              style={{ zIndex: 1 }}
+              className="relative md:w-1/2 lg:w-1/2 xl:w-1/4 bg-white mb-16 p-4 rounded-md shadow-lg max-w-xs mx-auto dark:bg-gray-800"
             >
               <Sidebar />
             </section>
-            <main className="md:w-1/2 lg:w-1/2 xl:w-3/4 mt-16 mb-16 pl-4">
+            <main className="md:w-1/2 lg:w-1/2 xl:w-3/4 mt-16 mb-16 pl-16">
               {children}
             </main>
           </div>
