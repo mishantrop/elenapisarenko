@@ -41,7 +41,7 @@ export default function WorkModal({ work, onClose }: Props) {
                     <div
                         className="md:w-1/2 lg:w-1/2 xl:w-3/4"
                         style={{
-                            backgroundImage: `url("images/works/${work.src}")`,
+                            backgroundImage: `url("/images/works/${work.src}")`,
                             backgroundSize: 'contain',
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'center',

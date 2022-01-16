@@ -11,40 +11,63 @@ import Layout from '@root/components/layout'
 import { getWorks, getCategories, Category, Work } from '@root/lib/works'
 import WorkItem from '@root/components/work-item'
 import WorkModal from '@root/components/work-modal'
+import { useRouter } from 'next/router'
 
 // export default function Home({ allPostsData }) {
-export default function Home() {
+export default function Home({ initialWork }: { initialWork: Work }) {
+    const router = useRouter()
+
     const siteTitle = 'Художник Елена'
     const ALL_WORKS_CATEGORY_ID = -1
     const allCategories: Array<Category> = [ ...[{ id: ALL_WORKS_CATEGORY_ID, title: 'Все работы' }], ...getCategories() ]
 
+    const [ pagetitle, setPagetitle ] = useState(siteTitle)
     const [ filteredWorks, setFilteredWorks ] = useState(getWorks())
     const [ selectedCategoryId, setSelectedCategoryId ] = useState(ALL_WORKS_CATEGORY_ID)
     const [ openedWork, setOpenedWork ] = useState<Work>()
 
     useEffect(() => {
+        if (initialWork) {
+            setPagetitle(initialWork.title)
+            setOpenedWork(initialWork)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useEffect(() => {
         setFilteredWorks(getWorks().filter((work) => {
-        return selectedCategoryId === ALL_WORKS_CATEGORY_ID || work.categoryId === selectedCategoryId
+            return selectedCategoryId === ALL_WORKS_CATEGORY_ID || work.categoryId === selectedCategoryId
         }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCategoryId])
 
     const handleSelectWork = (work: Work) => {
+        window.history.pushState(undefined, undefined, `/works/${work.id}`)
         setOpenedWork(work)
+        setPagetitle(work.title)
+    }
+
+    const handeCloseWork = () => {
+        setOpenedWork(undefined)
+        setPagetitle(siteTitle)
+        window.history.pushState(undefined, undefined, '/')
     }
 
     return (
         <Layout>
             <Head>
-                <title>{siteTitle}</title>
+                <title>{pagetitle}</title>
                 <link rel="icon" href="/favicon.ico" />
-                <meta name="og:title" content={siteTitle} />
+                <meta name="og:title" content={pagetitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
 
             {
                 Boolean(openedWork) && (
-                    <WorkModal work={openedWork} onClose={() => { setOpenedWork(undefined) }} />
+                    <WorkModal
+                        work={openedWork}
+                        onClose={handeCloseWork}
+                    />
                 )
             }
 
