@@ -112,7 +112,7 @@ export default function Home({ initialWork }: { initialWork: Work }) {
                     </div>
                     )
                 : (
-                    <section className="grid grid-flow-row-dense grid-cols-2 gap-3 justify-between sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
+                    <section className="grid grid-flow-row-dense justify-between    gap-8 sm:gap-3     grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                         {filteredWorks.map((work) => (
                             <WorkItem
                                 key={work.id}
