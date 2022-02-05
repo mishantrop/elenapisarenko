@@ -1,28 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
 // import { GetStaticProps } from 'next'
 import Head from 'next/head'
-// import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import classnames from 'classnames'
 
-// import { getSortedPostsData } from '@root/lib/posts'
-// import Date from '@root/components/date'
 import Layout from '@root/components/layout'
-import { getWorks, getCategories, Category, Work } from '@root/lib/works'
+import { fetchCategoriesData, Category, Work, fetchWorksData } from '@root/lib/works'
 import WorkItem from '@root/components/work-item'
 import WorkModal from '@root/components/work-modal'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+import { GetStaticProps } from 'next'
 
-// export default function Home({ allPostsData }) {
-export default function Home({ initialWork }: { initialWork: Work }) {
-    const router = useRouter()
+type Props = {
+    allCategoriesData?: Array<Category>;
+    allWorksData?: Array<Work>;
+    initialWork: Work;
+}
 
+export default function Home({
+    allCategoriesData,
+    allWorksData,
+    initialWork,
+}: Props) {
     const siteTitle = 'Художник Елена'
     const ALL_WORKS_CATEGORY_ID = -1
-    const allCategories: Array<Category> = [ ...[{ id: ALL_WORKS_CATEGORY_ID, title: 'Все работы' }], ...getCategories() ]
+    const allCategories: Array<Category> = [
+        ...[{ id: ALL_WORKS_CATEGORY_ID, title: 'Все работы' }],
+        ...allCategoriesData,
+    ]
 
     const [ pagetitle, setPagetitle ] = useState(siteTitle)
-    const [ filteredWorks, setFilteredWorks ] = useState(getWorks())
+    const [ filteredWorks, setFilteredWorks ] = useState(allWorksData)
     const [ selectedCategoryId, setSelectedCategoryId ] = useState(ALL_WORKS_CATEGORY_ID)
     const [ openedWork, setOpenedWork ] = useState<Work>()
 
@@ -35,7 +43,7 @@ export default function Home({ initialWork }: { initialWork: Work }) {
     }, [])
 
     useEffect(() => {
-        setFilteredWorks(getWorks().filter((work) => {
+        setFilteredWorks(allWorksData.filter((work) => {
             return selectedCategoryId === ALL_WORKS_CATEGORY_ID || work.categoryId === selectedCategoryId
         }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -131,11 +139,14 @@ export default function Home({ initialWork }: { initialWork: Work }) {
  * If you export an async function called getStaticProps from a page,
  * Next.js will pre-render this page at build time using the props returned by getStaticProps
  */
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const allPostsData = getSortedPostsData()
-//   return {
-//     props: {
-//       allPostsData
-//     }
-//   }
-// }
+export const getStaticProps: GetStaticProps = async (context) => {
+  const allWorksData = await fetchWorksData()
+  const allCategoriesData = await fetchCategoriesData()
+
+  return {
+    props: {
+      allWorksData,
+      allCategoriesData,
+    },
+  }
+}

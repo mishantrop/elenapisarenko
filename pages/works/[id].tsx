@@ -1,18 +1,16 @@
-import Head from 'next/head'
+import HomePage from '@root/pages'
+import { fetchWorkData, fetchWorksData, Work } from '@root/lib/works'
 
-import Home from '@root/pages'
-// import { getAllPostIds, getPostData } from '../../lib/posts'
-import { getWorks } from '@root/lib/works'
-
-export default function Work({ initialWork }) {
+export default function WorkPage({ initialWork }) {
     return (
-        <Home initialWork={initialWork} />
+        <HomePage initialWork={initialWork} />
     )
 }
 
 // Return a list of possible value for id
 export async function getStaticPaths() {
-    const works = getWorks()
+    const works = await fetchWorksData();
+
     const paths = works.map((work) => ({
         params: {
             id: work.id.toString(),
@@ -25,14 +23,12 @@ export async function getStaticPaths() {
     }
 }
 
-// Fetch necessary data for the blog post using params.id
 export async function getStaticProps({ params }) {
-    const works = getWorks()
-    const initialWork = works.find((work) => work.id === Number(params.id))
+    const workData: Work = await fetchWorkData(params.id)
 
     return {
-        props: {
-            initialWork,
-        },
+      props: {
+        workData,
+      }
     }
-}
+  }
