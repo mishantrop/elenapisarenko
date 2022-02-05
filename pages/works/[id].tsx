@@ -1,9 +1,18 @@
 import HomePage from '@root/pages'
-import { fetchWorkData, fetchWorksData, Work } from '@root/lib/works'
+import { fetchCategoriesData, fetchWorkData, fetchWorksData, Work } from '@root/lib/works'
+import { GetStaticProps } from 'next';
 
-export default function WorkPage({ initialWork }) {
+export default function WorkPage({
+    allCategoriesData,
+    allWorksData,
+    initialWork,
+}) {
     return (
-        <HomePage initialWork={initialWork} />
+        <HomePage
+            allCategoriesData={allCategoriesData}
+            allWorksData={allWorksData}
+            initialWork={initialWork}
+        />
     )
 }
 
@@ -23,12 +32,16 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({ params }) {
-    const workData: Work = await fetchWorkData(params.id)
+export const getStaticProps: GetStaticProps = async (context) => {
+    const allWorksData = await fetchWorksData()
+    const allCategoriesData = await fetchCategoriesData()
+    const initialWork: Work = await fetchWorkData(Number(context.params.id))
 
     return {
       props: {
-        workData,
+        initialWork,
+        allWorksData,
+        allCategoriesData,
       }
     }
   }

@@ -12,8 +12,8 @@ import WorkModal from '@root/components/work-modal'
 import { GetStaticProps } from 'next'
 
 type Props = {
-    allCategoriesData?: Array<Category>;
-    allWorksData?: Array<Work>;
+    allCategoriesData: Array<Category>;
+    allWorksData: Array<Work>;
     initialWork: Work;
 }
 
