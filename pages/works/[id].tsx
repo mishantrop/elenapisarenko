@@ -1,18 +1,25 @@
-import Head from 'next/head'
+import HomePage from '@root/pages'
+import { fetchCategoriesData, fetchWorkData, fetchWorksData, Work } from '@root/lib/works'
+import { GetStaticProps } from 'next';
 
-import Home from '@root/pages'
-// import { getAllPostIds, getPostData } from '../../lib/posts'
-import { getWorks } from '@root/lib/works'
-
-export default function Work({ initialWork }) {
+export default function WorkPage({
+    allCategoriesData,
+    allWorksData,
+    initialWork,
+}) {
     return (
-        <Home initialWork={initialWork} />
+        <HomePage
+            allCategoriesData={allCategoriesData}
+            allWorksData={allWorksData}
+            initialWork={initialWork}
+        />
     )
 }
 
 // Return a list of possible value for id
 export async function getStaticPaths() {
-    const works = getWorks()
+    const works = await fetchWorksData();
+
     const paths = works.map((work) => ({
         params: {
             id: work.id.toString(),
@@ -25,14 +32,16 @@ export async function getStaticPaths() {
     }
 }
 
-// Fetch necessary data for the blog post using params.id
-export async function getStaticProps({ params }) {
-    const works = getWorks()
-    const initialWork = works.find((work) => work.id === Number(params.id))
+export const getStaticProps: GetStaticProps = async (context) => {
+    const allWorksData = await fetchWorksData()
+    const allCategoriesData = await fetchCategoriesData()
+    const initialWork: Work = await fetchWorkData(Number(context.params.id))
 
     return {
-        props: {
-            initialWork,
-        },
+      props: {
+        initialWork,
+        allWorksData,
+        allCategoriesData,
+      }
     }
-}
+  }
