@@ -18,7 +18,7 @@ export default function WorkItem({ work, onSelect }: Props) {
 
     return (
         <a className={classnames(style['work-item'], 'rounded-md', 'overflow-hidden')} onClick={onClick}>
-            <div className={style['work-item__image']} style={{ backgroundImage: `url('/images/works/${work.src}')` }}>
+            <div className={style['work-item__image']} style={{ backgroundImage: `url('${work.thumb}')` }}>
             </div>
         </a>
     )
