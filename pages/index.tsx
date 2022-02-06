@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-// import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import classnames from 'classnames'
@@ -8,7 +7,6 @@ import Layout from '@root/components/layout'
 import { fetchCategoriesData, Category, Work, fetchWorksData } from '@root/lib/works'
 import WorkItem from '@root/components/work-item'
 import WorkModal from '@root/components/work-modal'
-// import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
 
 type Props = {
