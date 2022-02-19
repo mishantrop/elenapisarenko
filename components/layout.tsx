@@ -6,11 +6,12 @@ import Footer from './footer'
 
 interface Props {
   children: any;
+  isBlurred?: boolean;
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, isBlurred }: Props) {
   return (
-    <div>
+    <div className={classnames({ 'blur': isBlurred })}>
       <section className={classnames('h-24', style.aloha)}>
         &nbsp;
       </section>
