@@ -1,14 +1,14 @@
-.sidebar svg {
+.contacts svg {
     width: 24px;
     max-height: 24px;
 }
 
-.sidebar svg path {
+.contacts svg path {
     fill: #222;
 }
 
 @media (prefers-color-scheme: dark) {
-    .sidebar svg path {
+    .contacts svg path {
         fill: #ddd;
     }
 }

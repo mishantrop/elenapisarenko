@@ -1,3 +1,5 @@
+import "core-js/es"
+
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

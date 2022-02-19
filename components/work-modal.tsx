@@ -2,6 +2,7 @@
 
 import { Work } from '@root/lib/works'
 import { useEffect } from 'react';
+import Contacts from './contacts';
 
 type Props = {
     work: Work;
@@ -28,7 +29,7 @@ export default function WorkModal({ work, onClose }: Props) {
 
     return (
         <div className="fixed inset-0 bg-gray-500/75 z-50 p-4">
-            <div className="relative inset-0 bg-white h-full flex p-16">
+            <div className="relative inset-0 bg-white h-full flex p-16 rounded-xl opacity-90">
                 <button
 					v-if="showClose"
 					aria-label="close"
@@ -50,7 +51,13 @@ export default function WorkModal({ work, onClose }: Props) {
                         &nbsp;
                     </div>
                     <div className="md:w-1/2 lg:w-1/2 xl:w-1/4 pl-16">
-                        {work.title}
+                        <h1 className="mb-8">{work.title}</h1>
+
+                        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+                            Для заказа картины свяжитесь со мной удобным способом:
+                        </div>
+
+                        <Contacts />
                     </div>
                 </div>
             </div>
