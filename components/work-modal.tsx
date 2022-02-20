@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { Work } from '@root/lib/works'
-import { useEffect } from 'react';
-import Contacts from './contacts';
+import { useEffect } from 'react'
+import Contacts from './contacts'
 
 type Props = {
     work: Work;

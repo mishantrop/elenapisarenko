@@ -12,7 +12,7 @@ export type Work = {
 }
 
 export async function fetchWorksData(): Promise<Work[]> {
-    const response = await fetch('https://epcms.quasi-art.ru/api/works');
+    const response = await fetch('https://epcms.quasi-art.ru/api/works')
 
     const works = await response.json()
 
@@ -20,7 +20,7 @@ export async function fetchWorksData(): Promise<Work[]> {
 }
 
 export async function fetchCategoriesData(): Promise<Category[]> {
-    const response = await fetch('https://epcms.quasi-art.ru/api/categories');
+    const response = await fetch('https://epcms.quasi-art.ru/api/categories')
 
     const categories = await response.json()
 
