@@ -1,6 +1,6 @@
 import HomePage from '@root/pages'
 import { fetchCategoriesData, fetchWorkData, fetchWorksData, Work } from '@root/lib/works'
-import { GetStaticProps } from 'next';
+import { GetStaticProps } from 'next'
 
 export default function WorkPage({
     allCategoriesData,
@@ -18,7 +18,7 @@ export default function WorkPage({
 
 // Return a list of possible value for id
 export async function getStaticPaths() {
-    const works = await fetchWorksData();
+    const works = await fetchWorksData()
 
     const paths = works.map((work) => ({
         params: {
