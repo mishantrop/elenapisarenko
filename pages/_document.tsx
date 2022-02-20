@@ -4,7 +4,9 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <meta name="yandex-verification" content="5fa67f17759383e0" />
+      </Head>
       <body>
         <Main />
         <NextScript />
