@@ -2,6 +2,12 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
+  /**
+   * TODO Вынести в ENV
+   * Не включать метрики при раработке
+   */
+  const ymId = 87388785
+
   return (
     <Html>
       <Head>
@@ -19,7 +25,7 @@ export default function Document() {
                 m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
                 (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
       
-                ym(87388785, "init", {
+                ym(${ymId}, "init", {
                       clickmap:true,
                       trackLinks:true,
                       accurateTrackBounce:true
@@ -29,7 +35,7 @@ export default function Document() {
           />
         <noscript>
           <div>
-            <img src="https://mc.yandex.ru/watch/87388785" style={{ position:'absolute', left:'-9999px' }} alt="" />
+            <img src={`https://mc.yandex.ru/watch/${ymId}`} style={{ position:'absolute', left:'-9999px' }} alt="" />
           </div>
         </noscript>
       </body>
