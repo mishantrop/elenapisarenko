@@ -30,7 +30,7 @@ export async function fetchCategoriesData(): Promise<Category[]> {
 export async function fetchWorkData(id: number): Promise<Work> {
     const works = await fetchWorksData()
     const initialWork = works.find((work) => work.id === Number(id))
-  
+
     return {
         ...initialWork,
     }

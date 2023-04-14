@@ -1,3 +1,27 @@
 {
-  "extends": "next/core-web-vitals"
+    "extends": [
+      "airbnb-base",
+      "airbnb",
+      "next/core-web-vitals"
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "import"
+    ],
+    "rules": {
+        "linebreak-style": 0,
+        "react/require-default-props": 0,
+        "comma-dangle": [ "error", "always-multiline" ],
+        "indent": [ "warn", 4 ],
+        "react/jsx-indent": [ "warn", 4 ],
+        "semi": [ 1, "never" ],
+        "react/jsx-indent-props": [ 1, 4 ],
+        "react/jsx-filename-extension": [ 2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] } ],
+        "object-curly-newline": ["warn", {
+            "ObjectExpression": { "minProperties": 1 },
+            "ObjectPattern": { "multiline": true },
+            "ImportDeclaration": "never",
+            "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+        }]
+    }
 }

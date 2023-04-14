@@ -1,7 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable import/extensions */
 
 import { Work } from '@root/lib/works'
 import { useEffect } from 'react'
+
 import Contacts from './contacts'
 
 type Props = {
@@ -22,23 +23,23 @@ export default function WorkModal({ work, onClose }: Props) {
 
         return () => {
             document.removeEventListener('keydown', handleKeydown)
-            document.querySelector("body").classList.remove("overflow-hidden")
+            document.querySelector('body').classList.remove('overflow-hidden')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <div className="fixed inset-0 bg-gray-500/75 z-50 p-4">
-            <div className="relative inset-0 bg-white h-full flex p-16 rounded-xl opacity-90">
+            <div className="relative inset-0 bg-white h-full flex p-16 rounded-xl opacity-90 dark:bg-gray-900">
                 <button
-					v-if="showClose"
-					aria-label="close"
-					className="absolute top-0 left-0 text-xl text-black my-2 mx-4"
+                    aria-label="close"
+                    className="absolute top-0 left-0 text-xl text-black my-2 mx-4 dark:text-gray-200"
+                    type="button"
                     onClick={onClose}
-				>
-					× закрыть
-				</button>
-				<div className="md:flex w-full">
+                >
+                    × закрыть
+                </button>
+                <div className="md:flex w-full">
                     <div
                         className="md:w-1/2 lg:w-1/2 xl:w-3/4"
                         style={{
@@ -51,7 +52,7 @@ export default function WorkModal({ work, onClose }: Props) {
                         &nbsp;
                     </div>
                     <div className="md:w-1/2 lg:w-1/2 xl:w-1/4 pl-16">
-                        <h1 className="mb-8">{work.title}</h1>
+                        <h1 className="mb-8 dark:text-gray-200">{work.title}</h1>
 
                         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
                             Для заказа картины свяжитесь со мной удобным способом:

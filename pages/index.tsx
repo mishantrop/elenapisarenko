@@ -20,17 +20,19 @@ export default function Home({
     allWorksData,
     initialWork,
 }: Props) {
-    const siteTitle = 'Художник Елена'
+    const siteTitle = 'Картины на заказ | Художник Елена Писаренко'
     const ALL_WORKS_CATEGORY_ID = -1
     const allCategories: Array<Category> = [
-        ...[{ id: ALL_WORKS_CATEGORY_ID, title: 'Все работы' }],
+        ...[{
+            id: ALL_WORKS_CATEGORY_ID, title: 'Все работы',
+        }],
         ...allCategoriesData,
     ]
 
-    const [ pagetitle, setPagetitle ] = useState(siteTitle)
-    const [ filteredWorks, setFilteredWorks ] = useState(allWorksData)
-    const [ selectedCategoryId, setSelectedCategoryId ] = useState(ALL_WORKS_CATEGORY_ID)
-    const [ openedWork, setOpenedWork ] = useState<Work>(initialWork)
+    const [pagetitle, setPagetitle] = useState(siteTitle)
+    const [filteredWorks, setFilteredWorks] = useState(allWorksData)
+    const [selectedCategoryId, setSelectedCategoryId] = useState(ALL_WORKS_CATEGORY_ID)
+    const [openedWork, setOpenedWork] = useState<Work>(initialWork)
 
     useEffect(() => {
         if (initialWork) {
@@ -41,9 +43,8 @@ export default function Home({
     }, [])
 
     useEffect(() => {
-        setFilteredWorks(allWorksData.filter((work) => {
-            return selectedCategoryId === ALL_WORKS_CATEGORY_ID || work.categoryId === selectedCategoryId
-        }))
+        // eslint-disable-next-line max-len
+        setFilteredWorks(allWorksData.filter((work) => selectedCategoryId === ALL_WORKS_CATEGORY_ID || work.categoryId === selectedCategoryId))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCategoryId])
 
@@ -94,8 +95,9 @@ export default function Home({
                                 'focus:border-2': true,
                                 'focus:border-gray-900': true,
                             })}
+                            type="button"
                             onClick={() => {
-                            setSelectedCategoryId(category.id)
+                                setSelectedCategoryId(category.id)
                             }}
                         >
                             {category.title}
@@ -108,18 +110,18 @@ export default function Home({
                         <div className="mb-4 text-center text-sm text-gray-500 dark:text-gray-400">
                             В этой категории ничего нет
                         </div>
-                        )
-                    : (
-                        <section className="grid grid-flow-row-dense justify-between    gap-8 sm:gap-3     grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-                            {filteredWorks.map((work) => (
-                                <WorkItem
-                                    key={work.id}
-                                    work={work}
-                                    onSelect={handleSelectWork}
-                                />
-                            ))}
-                        </section>
                     )
+                        : (
+                            <section className="grid grid-flow-row-dense justify-between    gap-8 sm:gap-3     grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+                                {filteredWorks.map((work) => (
+                                    <WorkItem
+                                        key={work.id}
+                                        work={work}
+                                        onSelect={handleSelectWork}
+                                    />
+                                ))}
+                            </section>
+                        )
                 }
             </Layout>
 
@@ -139,14 +141,15 @@ export default function Home({
  * If you export an async function called getStaticProps from a page,
  * Next.js will pre-render this page at build time using the props returned by getStaticProps
  */
-export const getStaticProps: GetStaticProps = async (context) => {
-  const allWorksData = await fetchWorksData()
-  const allCategoriesData = await fetchCategoriesData()
+// export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
+    const allWorksData = await fetchWorksData()
+    const allCategoriesData = await fetchCategoriesData()
 
-  return {
-    props: {
-      allWorksData,
-      allCategoriesData,
-    },
-  }
+    return {
+        props: {
+            allWorksData,
+            allCategoriesData,
+        },
+    }
 }
