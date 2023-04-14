@@ -2,13 +2,11 @@ import { fetchWorksData } from '@root/lib/works'
 
 const Sitemap = () => {}
 
-const getSitemapWrapperTemplate = (content: string) => {
-    return `<?xml version="1.0" encoding="UTF-8"?>
+const getSitemapWrapperTemplate = (content: string) => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${content}
     </urlset>
   `
-}
 
 type Page = {
     url: string;
@@ -24,7 +22,7 @@ export const getServerSideProps = async ({ res }) => {
     const pagesInfo: Page[] = []
 
     const works = await fetchWorksData()
-    for (let i = 0; i < works.length; i++) {
+    for (let i = 0; i < works.length; i += 1) {
         pagesInfo.push({
             url: `${baseUrl}/works/${works[i].id}`,
             priority: '1.0',
@@ -46,10 +44,10 @@ export const getServerSideProps = async ({ res }) => {
     res.setHeader('Content-Type', 'text/xml')
     res.write(getSitemapWrapperTemplate(rows))
     res.end()
-  
+
     return {
-      props: {},
+        props: {},
     }
-  }
+}
 
 export default Sitemap

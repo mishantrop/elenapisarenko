@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 export default function Footer() {
     const year = (new Date()).getFullYear()
 
@@ -5,7 +6,9 @@ export default function Footer() {
         <footer>
             <div className="py-6 bg-slate-800">
                 <div className="text-center text-lg text-white bg-slate-800">
-                    <span>&copy; {year}</span>
+                    <span>
+                        &copy; 2022-{year}
+                    </span>
                 </div>
                 <div className="text-center text-lg text-white bg-slate-800">
                     <a href="https://quasi-art.ru/" rel="noreferrer noopener" target="_blank">Создание сайта</a>
