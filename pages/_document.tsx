@@ -13,7 +13,7 @@ export default function Document() {
     return (
         <Html>
             <Head>
-                <meta name="description" content="Описание страницы сайта." />
+                <meta name="description" content="Картины на заказ в Рыбинске, Ярославле и других городах" />
                 <meta name="yandex-verification" content="5fa67f17759383e0" />
                 <meta name="google-site-verification" content="LYQ4asAaJJanGdnuFKfsuftBcJTtH-24dyGeLFjxlm4" />
             </Head>
