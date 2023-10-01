@@ -1,6 +1,7 @@
 .contacts svg {
-    width: 24px;
     max-height: 24px;
+    min-width: min-content;
+    width: 24px;
 }
 
 .contacts svg path {
