@@ -29,30 +29,44 @@ export default function WorkModal({ work, onClose }: Props) {
     }, [])
 
     return (
-        <div className="fixed inset-0 bg-gray-500/75 z-50 p-4">
-            <div className="relative inset-0 bg-white h-full flex p-16 rounded-xl opacity-90 dark:bg-gray-900">
+        <div className="fixed inset-0 bg-gray-500/75 z-50 p-0 md:p-8 lg:p-12">
+            <div className="relative inset-0 bg-white h-full flex p-8 md:p-16 md:rounded-xl opacity-90 dark:bg-gray-900">
                 <button
                     aria-label="close"
-                    className="absolute top-0 left-0 text-xl text-black my-2 mx-4 dark:text-gray-200"
+                    className="
+                        flex
+                        absolute top-0 left-0
+                        text-xl text-black my-2 mx-4 dark:text-gray-200
+                    "
                     type="button"
                     onClick={onClose}
                 >
-                    × закрыть
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8">
+                        <g>
+                            <path className="fill-black dark:fill-white" d="M20,25a1,1,0,0,1-.71-.29l-8-8a1,1,0,0,1,0-1.42l8-8a1,1,0,1,1,1.42,1.42L13.41,16l7.3,7.29a1,1,0,0,1,0,1.42A1,1,0,0,1,20,25Z" />
+                        </g>
+                    </svg>
+                    назад
                 </button>
                 <div className="md:flex w-full">
                     <div
-                        className="md:w-1/2 lg:w-1/2 xl:w-3/4"
+                        className="
+                            h-auto
+                            flex-none md:w-1/2 lg:w-1/2 xl:w-3/4
+                            bg-top
+                            mt-4
+                            aspect-square
+                        "
                         style={{
                             backgroundImage: `url('${work.src}')`,
                             backgroundSize: 'contain',
                             backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
                         }}
                     >
                         &nbsp;
                     </div>
-                    <div className="md:w-1/2 lg:w-1/2 xl:w-1/4 pl-16">
-                        <h1 className="mb-8 dark:text-gray-200">{work.title}</h1>
+                    <div className="flex-none md:w-1/2 lg:w-1/2 xl:w-1/4 pl-0 md:pl-16">
+                        <h1 className="mt-4 md:mb-8 dark:text-gray-200">{work.title}</h1>
 
                         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
                             Для заказа картины свяжитесь со мной удобным способом:
