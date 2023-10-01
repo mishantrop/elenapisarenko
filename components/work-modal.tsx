@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable import/extensions */
 
 import { Work } from '@root/lib/works'
@@ -29,8 +31,18 @@ export default function WorkModal({ work, onClose }: Props) {
     }, [])
 
     return (
-        <div className="fixed inset-0 bg-gray-500/75 z-50 p-0 md:p-8 lg:p-12">
-            <div className="relative inset-0 bg-white h-full flex p-8 md:p-16 md:rounded-xl opacity-90 dark:bg-gray-900">
+        <div
+            className="fixed inset-0 bg-gray-500/75 z-50 p-0 md:p-8 lg:p-12"
+            onClick={() => {
+                onClose()
+            }}
+        >
+            <div
+                className="relative inset-0 bg-white h-full flex p-8 md:p-16 md:rounded-xl opacity-90 dark:bg-gray-900"
+                onClick={(event) => {
+                    event.stopPropagation()
+                }}
+            >
                 <button
                     aria-label="close"
                     className="
