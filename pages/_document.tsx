@@ -23,9 +23,7 @@ export default function Document() {
                 <Main />
                 <NextScript />
 
-                <script
-                    src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-                />
+                <script src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
