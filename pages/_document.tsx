@@ -1,6 +1,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/no-danger */
 /* eslint-disable @next/next/no-img-element */
+import GoogleAnalytics from '@root/components/seo/googleAnalytics'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
@@ -20,6 +21,8 @@ export default function Document() {
             <body>
                 <Main />
                 <NextScript />
+
+                <GoogleAnalytics />
 
                 <script
                     dangerouslySetInnerHTML={{

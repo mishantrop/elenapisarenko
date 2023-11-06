@@ -13,7 +13,7 @@ export default function Footer() {
                     href="https://quasi-art.ru/"
                     rel="noreferrer noopener"
                     target="_blank"
-                    className="text-center text-lg text-gray-900 dark:text-gray-200 hover:text-rose-400"
+                    className="text-center text-lg text-gray-200 dark:text-gray-200 hover:text-rose-400"
                 >
                     Создание сайта
                 </a>

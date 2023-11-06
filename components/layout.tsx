@@ -17,7 +17,7 @@ export default function Layout({ children, isBlurred }: Props) {
         })}
         >
             <section className={classnames('h-24', style.aloha)}>
-        &nbsp;
+                &nbsp;
             </section>
 
             <section className="-mt-16 dark:bg-gray-900">

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import classnames from 'classnames'
 
 import Layout from '@root/components/layout'
@@ -54,11 +54,11 @@ export default function Home({
         setPagetitle(work.title)
     }
 
-    const handeCloseWork = useCallback(() => {
+    const handeCloseWork = () => {
         setOpenedWork(undefined)
         setPagetitle(siteTitle)
         window.history.pushState(undefined, undefined, '/')
-    }, [])
+    }
 
     return (
         <>
@@ -106,11 +106,12 @@ export default function Home({
                 </div>
 
                 {
-                    filteredWorks.length === 0 ? (
-                        <div className="mb-4 text-center text-sm text-gray-500 dark:text-gray-400">
-                            В этой категории ничего нет
-                        </div>
-                    )
+                    filteredWorks.length === 0
+                        ? (
+                            <div className="mb-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                                В этой категории ничего нет
+                            </div>
+                        )
                         : (
                             <section className="grid grid-flow-row-dense justify-between    gap-8 sm:gap-3     grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                                 {filteredWorks.map((work) => (
