@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/no-danger */
 /* eslint-disable @next/next/no-img-element */
-import GoogleAnalytics from '@root/components/seo/googleAnalytics'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
@@ -10,6 +10,7 @@ export default function Document() {
      * Не включать метрики при разработке
      */
     const ymId = 87388785
+    const googleAnalyticsId = 'G-GWFBSQTWMP'
 
     return (
         <Html>
@@ -22,7 +23,21 @@ export default function Document() {
                 <Main />
                 <NextScript />
 
-                <GoogleAnalytics />
+                <script
+                    src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${googleAnalyticsId}', {
+                            page_path: window.location.pathname,
+                        });
+                        `,
+                    }}
+                />
 
                 <script
                     dangerouslySetInnerHTML={{
